@@ -29,19 +29,15 @@ public class MainActivity extends ListActivity {
         /** Defining the ArrayAdapter to set items to ListView */
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
         /** Defining a click event listener for the button "Add" */
-        OnClickListener listener = new OnClickListener() {
+        btn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditText edit = (EditText) findViewById(R.id.txtItem);
                 list.add(edit.getText().toString());
                 edit.setText(" ");
                 adapter.notifyDataSetChanged();
-
             }
-        };
-        btn.setOnClickListener(listener);
-        /** Setting the adapter to the ListView */
-
+        });
         setListAdapter(adapter);
 
     }
