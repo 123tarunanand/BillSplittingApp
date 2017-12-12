@@ -9,22 +9,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Enter Item" />
+            android:hint="Enter Item"
+            android:layout_marginTop="166dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
         <ImageView
             android:id="@+id/imgViewAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="addValue"
             android:background="@drawable/tick"
-            android:layout_toRightOf="@+id/editTextView"
-            />
+            android:layout_marginRight="62dp"
+            android:layout_marginEnd="62dp"
+            android:layout_alignTop="@+id/editTextView1"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
         <EditText
             android:id="@+id/editTextView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_below="@+id/editTextView"
-            android:hint="Enter Price" />
+            android:hint="Enter Price"
+            android:layout_marginLeft="46dp"
+            android:layout_marginStart="46dp"
+            android:layout_above="@+id/listview"
+            android:layout_toRightOf="@+id/editTextView"
+            android:layout_toEndOf="@+id/editTextView" />
 
 
     <ListView
@@ -33,13 +44,32 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:dividerHeight="2dp"
-        android:layout_below="@+id/editTextView1">
+        android:layout_below="@+id/editTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
     </ListView>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:text="Submit"
-        android:onClick="submit"/>
+        android:onClick="submit"
+        android:layout_below="@+id/editText"
+        android:layout_alignLeft="@+id/editTextView1"
+        android:layout_alignStart="@+id/editTextView1" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:layout_toStartOf="@+id/imgViewAdd"
+        android:ems="10"
+        android:hint="Enter Event"
+        android:inputType="textPersonName"
+        android:textSize="30sp" />
+
 </RelativeLayout>

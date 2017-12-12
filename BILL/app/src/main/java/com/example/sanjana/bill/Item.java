@@ -5,9 +5,9 @@ import java.io.Serializable;
 
 public class Item implements Serializable{
     public  String ItemName;
-    public int Price;
+    public double Price;
 
-    public Item(String ItemName, Integer Price) {
+    public Item(String ItemName, double Price) {
         this.ItemName = ItemName;
         this.Price = Price;
     }
@@ -15,7 +15,7 @@ public class Item implements Serializable{
         return ItemName;
     }
 
-    public Integer getPrice() {
+    public double getPrice() {
         return Price;
     }
 }
