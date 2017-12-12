@@ -4,41 +4,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+        <EditText
+            android:id="@+id/editTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Enter Item" />
+        <ImageView
+            android:id="@+id/imgViewAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="addValue"
+            android:background="@drawable/tick"
+            android:layout_toRightOf="@+id/editTextView"
+            />
+        <EditText
+            android:id="@+id/editTextView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_below="@+id/editTextView"
+            android:hint="Enter Price" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText1"
-        android:layout_centerHorizontal="true"
-        android:text="ADD Values to listview" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:ems="10"
-        android:hint="Item" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
-        android:layout_centerHorizontal="true"
-
-        android:ems="10"
-        android:hint="Price" />
 
     <ListView
-        android:id="@+id/listView1"
+        android:id="@+id/listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
-        android:layout_centerHorizontal="true" >
-    </ListView>
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:dividerHeight="2dp"
+        android:layout_below="@+id/editTextView1">
 
+    </ListView>
 </RelativeLayout>
