@@ -1,8 +1,12 @@
 package com.example.sanjana.bill;
-import android.support.v7.app.AppCompatActivity;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.widget.*;
+
+import java.io.Serializable;
 import java.util.*;
 import android.view.*;
 
@@ -13,6 +17,7 @@ public class MainActivity extends Activity {
     EditText editTextView1;
     ArrayList<Item> ItemModelList;
     CustomAdapter customAdapter;
+    Button sub;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,5 +40,14 @@ public class MainActivity extends Activity {
         editTextView.setText("");
         editTextView1.setText("");
         }
+    public void submit(View v){
+        Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
+        Bundle args = new Bundle();
+        args.putSerializable("ARRAYLIST",(Serializable)ItemModelList);
+        intent.putExtra("FOODLIST",args);
+        startActivity(intent);
+
+
+    }
     }
 
