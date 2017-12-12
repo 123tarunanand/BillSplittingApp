@@ -1,4 +1,4 @@
-package com.example.sanjana.codesprint;
+package com.example.anumeha.billsplit1;
 
 import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.*;
 import java.util.*;
 import android.view.*;
+
+import com.example.anumeha.billsplit1.R;
 
 public class MainActivity extends Activity {
 

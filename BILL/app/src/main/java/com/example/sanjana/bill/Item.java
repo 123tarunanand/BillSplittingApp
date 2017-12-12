@@ -1,11 +1,9 @@
-package com.example.anumeha.billsplit1;
-import android.app.Activity;
-import android.os.Bundle;
-import android.widget.*;
-import java.util.*;
-import android.view.*;
+package com.example.sanjana.bill;
 
-public class Item {
+
+import java.io.Serializable;
+
+public class Item implements Serializable{
     public  String ItemName;
     public int Price;
 
@@ -21,5 +19,4 @@ public class Item {
         return Price;
     }
 }
-
 
