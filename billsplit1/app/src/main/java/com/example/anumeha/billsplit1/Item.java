@@ -1,9 +1,5 @@
-package com.example.sanjana.codesprint;
-import android.app.Activity;
-import android.os.Bundle;
-import android.widget.*;
-import java.util.*;
-import android.view.*;
+package com.example.sanjana.bill;
+
 
 public class Item {
     public  String ItemName;
@@ -21,5 +17,4 @@ public class Item {
         return Price;
     }
 }
-
 
