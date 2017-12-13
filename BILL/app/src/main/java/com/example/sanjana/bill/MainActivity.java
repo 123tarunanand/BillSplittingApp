@@ -3,12 +3,13 @@ package com.example.sanjana.bill;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.widget.*;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 
 import java.io.Serializable;
-import java.util.*;
-import android.view.*;
+import java.util.ArrayList;
 
 
 public class MainActivity extends Activity {
@@ -32,14 +33,21 @@ public class MainActivity extends Activity {
     }
 
     public void addValue(View v) {
-        String name = editTextView.getText().toString();
-        int i=Integer.parseInt(editTextView1.getText().toString());
-        Item item = new Item(name,i);
-        ItemModelList.add(item);
-        customAdapter.notifyDataSetChanged();
-        editTextView.setText("");
-        editTextView1.setText("");
+        try {
+            String name = editTextView.getText().toString();
+            double i = Double.parseDouble(editTextView1.getText().toString());
+            Item item = new Item(name, i);
+            ItemModelList.add(item);
+            customAdapter.notifyDataSetChanged();
+            editTextView.setText("");
+            editTextView1.setText("");
         }
+        catch (NumberFormatException e)
+        {
+            editTextView.setText("");
+            editTextView1.setText("");
+        }
+    }
     public void submit(View v){
         Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
         Bundle args = new Bundle();
