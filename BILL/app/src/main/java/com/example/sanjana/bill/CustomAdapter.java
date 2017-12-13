@@ -1,15 +1,11 @@
 package com.example.sanjana.bill;
 
 import android.app.Activity;
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import java.util.ArrayList;
+import android.os.Bundle;
+import android.widget.*;
+import java.util.*;
+import android.view.*;
+import android.content.*;
 
 
 /**
@@ -47,7 +43,7 @@ public class CustomAdapter extends BaseAdapter {
             ImageView imgRemove = (ImageView) convertView.findViewById(R.id.imgRemove);
             Item m = itemModelList.get(position);
             item.setText(m.getItem());
-            price.setText(Double.toString(m.getPrice()));
+            price.setText(m.getPrice().toString());
 
             imgRemove.setOnClickListener(new View.OnClickListener() {
                 @Override
