@@ -1,62 +1,71 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-        <EditText
-            android:id="@+id/editTextView"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Enter Item"
-            android:layout_marginTop="166dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-        <ImageView
-            android:id="@+id/imgViewAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="addValue"
-            android:background="@drawable/tick"
-            android:layout_marginRight="62dp"
-            android:layout_marginEnd="62dp"
-            android:layout_alignTop="@+id/editTextView1"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-        <EditText
-            android:id="@+id/editTextView1"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Enter Price"
-            android:layout_marginLeft="46dp"
-            android:layout_marginStart="46dp"
-            android:layout_above="@+id/listview"
-            android:layout_toRightOf="@+id/editTextView"
-            android:layout_toEndOf="@+id/editTextView" />
+    android:keepScreenOn="false"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+    <EditText
+        android:id="@+id/editTextView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="166dp"
+        android:layout_weight="1"
+        android:hint="Enter Item"
+        android:singleLine="true" />
+
+    <ImageView
+        android:id="@+id/imgViewAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/editTextView1"
+        android:layout_marginEnd="62dp"
+        android:layout_marginRight="62dp"
+        android:background="@drawable/tick"
+        android:onClick="addValue" />
+
+    <EditText
+        android:id="@+id/editTextView1"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/listview"
+        android:layout_marginLeft="46dp"
+        android:layout_marginStart="46dp"
+        android:layout_toEndOf="@+id/editTextView"
+        android:layout_toRightOf="@+id/editTextView"
+        android:layout_weight="1"
+        android:hint="Enter Price"
+        android:singleLine="true" />
 
 
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:dividerHeight="2dp"
-        android:layout_below="@+id/editTextView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/editTextView"
+        android:layout_weight="1"
+        android:dividerHeight="2dp">
 
     </ListView>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit"
-        android:onClick="submit"
+        android:layout_alignEnd="@+id/editTextView1"
+        android:layout_alignRight="@+id/editTextView1"
         android:layout_below="@+id/editText"
-        android:layout_alignLeft="@+id/editTextView1"
-        android:layout_alignStart="@+id/editTextView1" />
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="27dp"
+        android:onClick="submit"
+        android:text="Submit" />
 
     <EditText
         android:id="@+id/editText"
@@ -70,6 +79,7 @@
         android:ems="10"
         android:hint="Enter Event"
         android:inputType="textPersonName"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:gravity="top"/>
 
 </RelativeLayout>
