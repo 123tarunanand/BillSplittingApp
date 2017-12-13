@@ -6,7 +6,7 @@
     >
         <EditText
             android:id="@+id/editTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Enter Item"
@@ -27,7 +27,7 @@
             android:layout_alignParentEnd="true" />
         <EditText
             android:id="@+id/editTextView1"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Enter Price"
