@@ -1,4 +1,5 @@
 
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -77,9 +78,10 @@
         android:layout_marginTop="30dp"
         android:layout_toStartOf="@+id/imgViewAdd"
         android:ems="10"
+        android:focusedByDefault="false"
+        android:gravity="top"
         android:hint="Enter Event"
         android:inputType="textPersonName"
-        android:textSize="30sp"
-        android:gravity="top"/>
+        android:textSize="30sp" />
 
 </RelativeLayout>
