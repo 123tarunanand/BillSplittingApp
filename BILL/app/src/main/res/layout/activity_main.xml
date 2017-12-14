@@ -1,7 +1,5 @@
-
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -41,29 +39,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_alignEnd="@+id/editTextView1"
-        android:layout_alignRight="@+id/editTextView1"
-        android:layout_below="@+id/editText"
-        android:layout_marginEnd="27dp"
-        android:layout_marginRight="27dp"
-        android:onClick="submit"
-        android:text="Submit" />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="30dp"
-        android:layout_toLeftOf="@+id/imgViewAdd"
-        android:ems="10"
-        android:focusedByDefault="false"
-        android:gravity="top"
-        android:hint="Enter Event"
-        android:inputType="textPersonName"
-        android:textSize="30sp" />
-
+        android:layout_alignParentBottom="true"
+        android:text="Submit"
+        android:onClick="submit"/>
 </RelativeLayout>

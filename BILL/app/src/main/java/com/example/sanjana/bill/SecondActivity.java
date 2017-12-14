@@ -90,8 +90,8 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
         Toast.makeText(getApplicationContext(), "Selected: " + quantity, Toast.LENGTH_SHORT).show();
         Toast.makeText(getApplicationContext(), "Name: " + person, Toast.LENGTH_SHORT).show();
         Toast.makeText(getApplicationContext(), "Selected: " + itemname, Toast.LENGTH_LONG).show();
-        PersonItem p=new PersonItem(Double.valueOf(quantity),person,itemname);
-        personlist.add(p);
+        //PersonItem p=new PersonItem(Double.valueOf(quantity),person,itemname);
+        //personlist.add(p);
 
     }
 
