@@ -1,30 +1,50 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-        <EditText
-            android:id="@+id/editTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Enter Item" />
-        <ImageView
-            android:id="@+id/imgViewAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="addValue"
-            android:background="@drawable/tick"
-            android:layout_toRightOf="@+id/editTextView"
-            />
-        <EditText
-            android:id="@+id/editTextView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_below="@+id/editTextView"
-            android:hint="Enter Price" />
+
+    <EditText
+        android:id="@+id/editTextView"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/button"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_weight="1"
+        android:hint="Enter Item"
+        android:singleLine="true" />
+    <ImageView
+        android:id="@+id/imgViewAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="addValue"
+        android:background="@drawable/tick"
+        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_alignBottom="@+id/editTextView1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:id="@+id/editTextView1"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/editTextView"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignStart="@+id/button"
+        android:layout_alignTop="@+id/editTextView"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_weight="1"
+        android:hint="Enter Price"
+        android:singleLine="true"
+        android:textAlignment="gravity" />
 
 
     <ListView
@@ -33,13 +53,38 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:dividerHeight="2dp"
-        android:layout_below="@+id/editTextView1">
+        android:layout_below="@+id/editTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
     </ListView>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+
+        android:onClick="submit"
         android:text="Submit"
-        android:onClick="submit"/>
+        android:id="@+id/button"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:focusedByDefault="false"
+        android:gravity="top|center_vertical|center_horizontal"
+        android:hint="Enter Event"
+        android:inputType="textPersonName"
+        android:textSize="30sp" />
+
+
+    android:layout_alignParentBottom="true"
+    android:text="Submit"
+    android:onClick="submit"/>
+
 </RelativeLayout>
