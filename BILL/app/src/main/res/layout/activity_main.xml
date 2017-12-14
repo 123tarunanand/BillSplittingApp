@@ -18,7 +18,7 @@
         android:layout_marginTop="32dp"
         android:layout_weight="1"
         android:hint="Enter Item"
-        android:singleLine="true" />
+        android:maxLines="1" />
     <ImageView
         android:id="@+id/imgViewAdd"
         android:layout_width="wrap_content"
@@ -83,8 +83,6 @@
         android:textSize="30sp" />
 
 
-    android:layout_alignParentBottom="true"
-    android:text="Submit"
-    android:onClick="submit"/>
+
 
 </RelativeLayout>

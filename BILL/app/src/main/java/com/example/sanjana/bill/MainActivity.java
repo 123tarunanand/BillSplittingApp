@@ -1,6 +1,7 @@
 package com.example.sanjana.bill;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 public class MainActivity extends Activity {
     ListView listView;
     EditText editTextView;
+    EditText ev;
     EditText editTextView1;
     ArrayList<Item> ItemModelList;
     CustomAdapter customAdapter;
@@ -46,14 +48,33 @@ public class MainActivity extends Activity {
         {
             editTextView.setText("");
             editTextView1.setText("");
+            AlertDialog a = new AlertDialog.Builder(this).create();
+            a.setTitle("Error");
+            a.setMessage("Incorrect entry");
+            a.show();
         }
     }
     public void submit(View v){
+
         Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
         Bundle args = new Bundle();
-        args.putSerializable("ARRAYLIST",(Serializable)ItemModelList);
-        intent.putExtra("FOODLIST",args);
-        startActivity(intent);
+        ev = (EditText) findViewById(R.id.editText);
+        if(ev.getText().toString().isEmpty())
+        {
+            AlertDialog a = new AlertDialog.Builder(this).create();
+            a.setTitle("Error");
+            a.setMessage("Please enter an event name");
+            a.show();
+        }
+        else
+        {
+
+            args.putSerializable("ARRAYLIST",(Serializable)ItemModelList);
+            args.putString("NAME",ev.getText().toString());
+            intent.putExtra("FOODLIST",args);
+            startActivity(intent);
+        }
+
 
 
     }

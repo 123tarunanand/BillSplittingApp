@@ -3,17 +3,16 @@ package com.example.sanjana.bill;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
-import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -30,6 +29,7 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
     Double quantity;
     NumberPicker np;
     EditText name;
+    TextView ev;
     String person;
     final String nums[]={"Select Fraction","0","0.34","0.25","0.5","1","2","3"};
     @Override
@@ -43,6 +43,8 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
         addItemsOnSpinner(Foodlist);
+        ev = (TextView) findViewById(R.id.textView);
+        ev.setText(args.getCharSequence("NAME"));
         np = (NumberPicker) findViewById(R.id.np);
         np.setMaxValue(nums.length-1);
         np.setMinValue(0);
