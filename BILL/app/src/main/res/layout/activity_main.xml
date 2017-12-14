@@ -58,17 +58,12 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="30dp"
-        android:layout_toStartOf="@+id/imgViewAdd"
+        android:layout_toLeftOf="@+id/imgViewAdd"
         android:ems="10"
         android:focusedByDefault="false"
         android:gravity="top"
         android:hint="Enter Event"
         android:inputType="textPersonName"
         android:textSize="30sp" />
-
-
-        android:layout_alignParentBottom="true"
-        android:text="Submit"
-        android:onClick="submit"/>
 
 </RelativeLayout>
