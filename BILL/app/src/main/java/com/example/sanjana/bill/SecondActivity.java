@@ -70,7 +70,7 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
-         itemname = parent.getItemAtPosition(position).toString();
+        itemname = parent.getItemAtPosition(position).toString();
 
 
     }
