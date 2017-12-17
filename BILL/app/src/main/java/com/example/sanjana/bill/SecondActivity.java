@@ -23,7 +23,7 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
 
     ArrayList<String> list;
     ArrayList<PersonItem> personlist;
-     String itemname;
+    String itemname;
     public static final String HELLO="Mha";
     private Spinner spinner;
     Double quantity;
@@ -65,6 +65,7 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
 
 
 
+
     }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -87,13 +88,15 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
         spinner.setAdapter(dataAdapter);
     }
     public void order(View v){
+        personlist=new ArrayList<>();
 
         person=name.getText().toString();
         Toast.makeText(getApplicationContext(), "Selected: " + quantity, Toast.LENGTH_SHORT).show();
         Toast.makeText(getApplicationContext(), "Name: " + person, Toast.LENGTH_SHORT).show();
         Toast.makeText(getApplicationContext(), "Selected: " + itemname, Toast.LENGTH_LONG).show();
-        //PersonItem p=new PersonItem(Double.valueOf(quantity),person,itemname);
-        //personlist.add(p);
+        PersonItem p=new PersonItem(Double.valueOf(quantity),person,itemname);
+        personlist.add(p);
+
 
     }
 
