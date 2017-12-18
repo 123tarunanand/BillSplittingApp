@@ -48,7 +48,12 @@ public class CustomAdapterPerson extends BaseAdapter{
             PersonItem m = itemperlist.get(position);
             person.setText(m.getPName());
             item.setText(m.getFooditem());
-            quantity.setText(Double.toString(m.getQuantity()));
+
+           try{ quantity.setText(String.valueOf(m.getQuantity()));}
+           catch(NullPointerException e)
+           {
+               quantity.setText(String.valueOf(0.0));
+           }
 
             imgRemove.setOnClickListener(new View.OnClickListener() {
                 @Override

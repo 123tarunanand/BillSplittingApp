@@ -14,8 +14,8 @@ import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.io.Serializable;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -60,7 +60,8 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
         np = (NumberPicker) findViewById(R.id.np);
         np.setMaxValue(nums.length - 1);
         np.setMinValue(0);
-        np.setWrapSelectorWheel(false);
+        np.setValue(0);
+        np.setWrapSelectorWheel(true);
         np.setDisplayedValues(nums);
         np.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
@@ -112,36 +113,42 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
         }
         else
         {
-        Toast.makeText(getApplicationContext(), "Selected: " + quantity, Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(), "Name: " + person, Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(), "Selected: " + itemname, Toast.LENGTH_LONG).show();
-            PersonItem item = new PersonItem(quantity, person, itemname);
-            personlist1.add(item);
-        CustomAdapterperson.notifyDataSetChanged();
 
         if (Calculation.containsKey(person)) {
             ArrayList<PersonItemhash> list = Calculation.get(person);
-            for(int i = np.getMinValue(); i <= np.getMaxValue();i++) {
-              Double  z = Double.valueOf(nums[i]);
-                PersonItemhash k = new PersonItemhash(z,itemname);
-               if (list.contains(k)) {
+            PersonItemhash item1 = new PersonItemhash(quantity, itemname);
+            for(int i = 0; i < nums.length ;i++) {
+                PersonItemhash k = list.get(i);
+
+               if (k.getFooditem().equals(itemname)) {
                     AlertDialog a = new AlertDialog.Builder(this).create();
                     a.setTitle("Error");
-                    a.setMessage("Item has already been entered"+z);
+                    a.setMessage("Item has already been entered");
                     a.show();
                    return;
                 }
             }
-            PersonItemhash item1 = new PersonItemhash(quantity, itemname);
+
             list.add(item1);
             Calculation.put(person, list);
 
+
         } else {
+
+
             PersonItemhash item1 = new PersonItemhash(quantity, itemname);
             ArrayList<PersonItemhash> var = new ArrayList<PersonItemhash>();
             var.add(item1);
             Calculation.put(person, var);
         }}
+
+
+        Toast.makeText(getApplicationContext(), "Selected: " + quantity, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Name: " + person, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Selected: " + itemname, Toast.LENGTH_LONG).show();
+        PersonItem item = new PersonItem(quantity, person, itemname);
+        personlist1.add(item);
+        CustomAdapterperson.notifyDataSetChanged();
 
 
     }
