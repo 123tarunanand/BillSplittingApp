@@ -1,6 +1,7 @@
 package com.example.sanjana.bill;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,12 +27,11 @@ import java.util.Set;
 public class SecondActivity extends Activity implements OnItemSelectedListener {
 
     ArrayList<String> list;
-    ArrayList<PersonItem> personlist;
     ArrayList<PersonItem> personlist1;
     HashMap<String, ArrayList<PersonItemhash>> Calculation = new HashMap<>();
 
     String itemname;
-    public String HELLO = "Mha";
+
     private Spinner spinner;
     Double quantity;
     NumberPicker np;
@@ -41,7 +41,7 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
     ListView listview;
     CustomAdapterPerson CustomAdapterperson;
     HashMap<String,Double> Items;
-    final String nums[] = {"Select Fraction", "0", "0.34", "0.25", "0.5", "1", "2", "3"};
+    final String nums[] = {"0", "0.34", "0.25", "0.5", "1", "2", "3"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +71,9 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
 
             }
         });
-        personlist = new ArrayList<PersonItem>();
         personlist1 = new ArrayList<PersonItem>();
         listview = findViewById(R.id.listquant);
-        CustomAdapterperson = new CustomAdapterPerson(this, personlist);
+        CustomAdapterperson = new CustomAdapterPerson(this, personlist1);
         listview.setEmptyView(findViewById(R.id.empty));
         listview.setAdapter(CustomAdapterperson);
         name = (EditText) findViewById(R.id.personname);
@@ -104,37 +103,59 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
 
     public void order(View v) {
         person = name.getText().toString();
+        if(person.isEmpty())
+        {
+            AlertDialog a = new AlertDialog.Builder(this).create();
+            a.setTitle("Error");
+            a.setMessage("Enter the name of the person");
+            a.show();
+        }
+        else
+        {
         Toast.makeText(getApplicationContext(), "Selected: " + quantity, Toast.LENGTH_SHORT).show();
         Toast.makeText(getApplicationContext(), "Name: " + person, Toast.LENGTH_SHORT).show();
         Toast.makeText(getApplicationContext(), "Selected: " + itemname, Toast.LENGTH_LONG).show();
-        if (person.equals(HELLO)) {
-            PersonItem item = new PersonItem(quantity, "", itemname);
-            personlist.add(item);
-
-        } else {
             PersonItem item = new PersonItem(quantity, person, itemname);
-            personlist.add(item);
             personlist1.add(item);
-        }
         CustomAdapterperson.notifyDataSetChanged();
-        HELLO = new String(person);
+
         if (Calculation.containsKey(person)) {
             ArrayList<PersonItemhash> list = Calculation.get(person);
-            PersonItemhash item = new PersonItemhash(quantity, itemname);
-            list.add(item);
+            for(int i = np.getMinValue(); i <= np.getMaxValue();i++) {
+              Double  z = Double.valueOf(nums[i]);
+                PersonItemhash k = new PersonItemhash(z,itemname);
+               if (list.contains(k)) {
+                    AlertDialog a = new AlertDialog.Builder(this).create();
+                    a.setTitle("Error");
+                    a.setMessage("Item has already been entered"+z);
+                    a.show();
+                   return;
+                }
+            }
+            PersonItemhash item1 = new PersonItemhash(quantity, itemname);
+            list.add(item1);
             Calculation.put(person, list);
 
         } else {
-            PersonItemhash item = new PersonItemhash(quantity, itemname);
+            PersonItemhash item1 = new PersonItemhash(quantity, itemname);
             ArrayList<PersonItemhash> var = new ArrayList<PersonItemhash>();
-            var.add(item);
+            var.add(item1);
             Calculation.put(person, var);
-        }
+        }}
 
 
     }
 
     public void submitorder(View v) {
+        if(personlist1.isEmpty())
+        {
+            AlertDialog a = new AlertDialog.Builder(this).create();
+            a.setTitle("Error");
+            a.setMessage("Please enter atleast one person");
+            a.show();
+        }
+        else
+        {
         Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
         Bundle args = new Bundle();
         Set<String> keys = Calculation.keySet();
@@ -151,6 +172,6 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
         }
         args.putSerializable("FinalDisplay",(Serializable)FinalDisplay);
         intent.putExtra("List",args);
-        startActivity(intent);
+        startActivity(intent);}
     }
 }

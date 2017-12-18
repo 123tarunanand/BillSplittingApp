@@ -70,6 +70,13 @@ public class MainActivity extends Activity {
             a.setMessage("Please enter an event name");
             a.show();
         }
+        else if(ItemModelList.isEmpty())
+        {
+            AlertDialog a = new AlertDialog.Builder(this).create();
+            a.setTitle("Error");
+            a.setMessage("Please enter atleast one item");
+            a.show();
+        }
         else
         {
 

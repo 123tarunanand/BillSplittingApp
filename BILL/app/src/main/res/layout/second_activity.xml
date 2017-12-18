@@ -5,35 +5,38 @@
 
 
     <EditText
+        android:id="@+id/personname"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:id="@+id/personname"
-        android:hint="Enter name"
 
-        android:layout_marginLeft="14dp"
-        android:layout_marginStart="14dp"
-
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView"
+        android:gravity="center"
+        android:hint="Enter name of person"
+        android:padding="20dp"
+        android:singleLine="true" />
     <NumberPicker
         android:id="@+id/np"
         android:layout_width="50dp"
-        android:layout_height="wrap_content"
-
-        android:layout_below="@+id/personname"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="69dp"
-        android:layout_marginEnd="69dp" />
+        android:layout_height="50dp"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:layout_marginLeft="58dp"
+        android:layout_marginStart="58dp"
+        android:layout_below="@+id/textView2"
+        android:layout_toRightOf="@+id/spinner"
+        android:layout_marginTop="12dp" />
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="60dp"
         android:layout_below="@+id/personname"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+     />
 
 
     <Button
@@ -41,37 +44,58 @@
         android:layout_height="wrap_content"
         android:text="Submit order"
         android:id="@+id/submitdetails"
-        android:layout_alignParentBottom="true"
-        android:onClick="submitorder"/>
+        android:onClick="submitorder"
+
+        android:layout_below="@+id/adddetails"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ADD"
-        android:layout_above="@id/submitdetails"
         android:id="@+id/adddetails"
-        android:onClick="order"/>
+        android:onClick="order"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/np"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_height="60dp"
         android:gravity="top|center_vertical|center_horizontal"
         android:singleLine="true"
         android:text="TextView"
         android:textColor="@android:color/black"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
     <ListView
         android:id="@+id/listquant"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinner"
+
+
+        android:layout_below="@+id/submitdetails"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-
-    />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Choose Fraction"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/personname"
+        android:layout_toRightOf="@+id/spinner"
+        android:layout_toEndOf="@+id/spinner" />
 
 </RelativeLayout>
