@@ -34,13 +34,23 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp" />
+
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Submit order"
         android:id="@+id/submitdetails"
         android:layout_alignParentBottom="true"
+        android:onClick="submitorder"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ADD"
+        android:layout_above="@id/submitdetails"
+        android:id="@+id/adddetails"
         android:onClick="order"/>
+
 
     <TextView
         android:id="@+id/textView"
