@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class MainActivity extends Activity {
@@ -20,6 +21,7 @@ public class MainActivity extends Activity {
     EditText editTextView1;
     ArrayList<Item> ItemModelList;
     CustomAdapter customAdapter;
+    HashMap<String,Double> items;
     Button sub;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class MainActivity extends Activity {
         editTextView = (EditText) findViewById(R.id.editTextView);
         editTextView1 = (EditText) findViewById(R.id.editTextView1);
         ItemModelList = new ArrayList<Item>();
+        items=new HashMap<>();
         customAdapter = new CustomAdapter(this, ItemModelList);
         listView.setEmptyView(findViewById(R.id.empty));
         listView.setAdapter(customAdapter);
@@ -39,6 +42,7 @@ public class MainActivity extends Activity {
             String name = editTextView.getText().toString();
             double i = Double.parseDouble(editTextView1.getText().toString());
             Item item = new Item(name, i);
+            items.put(name,i);
             ItemModelList.add(item);
             customAdapter.notifyDataSetChanged();
             editTextView.setText("");
@@ -70,6 +74,7 @@ public class MainActivity extends Activity {
         {
 
             args.putSerializable("ARRAYLIST",(Serializable)ItemModelList);
+            args.putSerializable("HashList",(Serializable)items);
             args.putString("NAME",ev.getText().toString());
             intent.putExtra("FOODLIST",args);
             startActivity(intent);

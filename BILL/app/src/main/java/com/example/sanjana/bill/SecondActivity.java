@@ -13,8 +13,11 @@ import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Created by anumeha on 12/12/17.
@@ -25,6 +28,8 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
     ArrayList<String> list;
     ArrayList<PersonItem> personlist;
     ArrayList<PersonItem> personlist1;
+    HashMap<String, ArrayList<PersonItemhash>> Calculation = new HashMap<>();
+
     String itemname;
     public String HELLO = "Mha";
     private Spinner spinner;
@@ -35,7 +40,9 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
     String person;
     ListView listview;
     CustomAdapterPerson CustomAdapterperson;
+    HashMap<String,Double> Items;
     final String nums[] = {"Select Fraction", "0", "0.34", "0.25", "0.5", "1", "2", "3"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -44,6 +51,7 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
         Intent intent = getIntent();
         Bundle args = intent.getBundleExtra("FOODLIST");
         ArrayList<Item> Foodlist = (ArrayList<Item>) args.getSerializable("ARRAYLIST");
+        HashMap<String,Double> Items=(HashMap<String,Double>)args.getSerializable("HashList");
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
         addItemsOnSpinner(Foodlist);
@@ -99,18 +107,50 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
         Toast.makeText(getApplicationContext(), "Selected: " + quantity, Toast.LENGTH_SHORT).show();
         Toast.makeText(getApplicationContext(), "Name: " + person, Toast.LENGTH_SHORT).show();
         Toast.makeText(getApplicationContext(), "Selected: " + itemname, Toast.LENGTH_LONG).show();
-        if(person.equals(HELLO)) {
-            PersonItem item = new PersonItem(quantity,"", itemname);
+        if (person.equals(HELLO)) {
+            PersonItem item = new PersonItem(quantity, "", itemname);
             personlist.add(item);
 
-        }
-        else {
-            PersonItem item = new PersonItem(quantity,person, itemname);
+        } else {
+            PersonItem item = new PersonItem(quantity, person, itemname);
             personlist.add(item);
             personlist1.add(item);
         }
         CustomAdapterperson.notifyDataSetChanged();
-        HELLO=new String(person);
+        HELLO = new String(person);
+        if (Calculation.containsKey(person)) {
+            ArrayList<PersonItemhash> list = Calculation.get(person);
+            PersonItemhash item = new PersonItemhash(quantity, itemname);
+            list.add(item);
+            Calculation.put(person, list);
 
+        } else {
+            PersonItemhash item = new PersonItemhash(quantity, itemname);
+            ArrayList<PersonItemhash> var = new ArrayList<PersonItemhash>();
+            var.add(item);
+            Calculation.put(person, var);
+        }
+
+
+    }
+
+    public void submitorder(View v) {
+        Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
+        Bundle args = new Bundle();
+        Set<String> keys = Calculation.keySet();
+        HashMap<String,Double>FinalDisplay=new HashMap<>();
+        for (String key : keys) {
+            ArrayList<PersonItemhash> list = Calculation.get(key);
+            Double FinalPrice=0.0;
+            for (int i = 0; i < list.size(); i++) {
+                PersonItemhash item=list.get(i);
+                Double cost=Items.get(item.getFooditem());
+                FinalPrice+=cost*item.getQuantity();
+            }
+            FinalDisplay.put(key,FinalPrice);
+        }
+        args.putSerializable("FinalDisplay",(Serializable)FinalDisplay);
+        intent.putExtra("List",args);
+        startActivity(intent);
     }
 }
