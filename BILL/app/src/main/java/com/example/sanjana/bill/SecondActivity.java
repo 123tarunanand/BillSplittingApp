@@ -38,6 +38,7 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
     EditText name;
     TextView ev;
     String person;
+    String title;
     ListView listview;
     CustomAdapterPerson CustomAdapterperson;
 
@@ -57,7 +58,8 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
         spinner.setOnItemSelectedListener(this);
         addItemsOnSpinner(Foodlist);
         ev = (TextView) findViewById(R.id.textView);
-        ev.setText(args.getCharSequence("NAME"));
+        title = args.getString("NAME");
+        ev.setText(title);
         np = (NumberPicker) findViewById(R.id.np);
         np.setMaxValue(nums.length - 1);
         np.setMinValue(0);
@@ -178,10 +180,12 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
                 PersonItemhash item=list.get(i);
                 Double cost=Items.get(item.getFooditem());
                 FinalPrice+=cost*item.getQuantity();
+
             }
             FinalDisplay.put(key,FinalPrice);
         }
         args.putSerializable("FinalDisplay",(Serializable)FinalDisplay);
+        args.putString("NAME",title);
         intent.putExtra("List",args);
         startActivity(intent);}
     }

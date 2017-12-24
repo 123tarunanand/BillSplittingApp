@@ -180,6 +180,7 @@ public class MainActivity extends Activity {
             args.putString("NAME",ev.getText().toString());
             intent.putExtra("FOODLIST",args);
             startActivity(intent);
+
         }
 
 
