@@ -2,44 +2,26 @@ package com.example.sanjana.bill;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
-import android.provider.SyncStateContract;
-import android.support.annotation.NonNull;
-import android.support.v4.content.FileProvider;
-import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
-import java.net.URI;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.UUID;
 
 
 
@@ -150,7 +132,27 @@ public class MainActivity extends Activity {
            }
        });
    } */
-
+  public void addValue(View v) {
+      try {
+          String name = editTextView.getText().toString();
+          double i = Double.parseDouble(editTextView1.getText().toString());
+          Item item = new Item(name, i);
+          items.put(name,i);
+          ItemModelList.add(item);
+          customAdapter.notifyDataSetChanged();
+          editTextView.setText("");
+          editTextView1.setText("");
+      }
+      catch (NumberFormatException e)
+      {
+          editTextView.setText("");
+          editTextView1.setText("");
+          AlertDialog a = new AlertDialog.Builder(this).create();
+          a.setTitle("Error");
+          a.setMessage("Incorrect entry");
+          a.show();
+      }
+  }
     public void submit(View v){
 
         Intent intent = new Intent(getApplicationContext(), SecondActivity.class);

@@ -116,8 +116,8 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
 
         if (Calculation.containsKey(person)) {
             ArrayList<PersonItemhash> list = Calculation.get(person);
-            PersonItemhash item1 = new PersonItemhash(quantity, itemname);
-            for(int i = 0; i < nums.length ;i++) {
+
+            for(int i = 0; i < list.size() ;i++) {
                 PersonItemhash k = list.get(i);
 
                if (k.getFooditem().equals(itemname)) {
@@ -128,7 +128,7 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
                    return;
                 }
             }
-
+            PersonItemhash item1 = new PersonItemhash(quantity, itemname);
             list.add(item1);
             Calculation.put(person, list);
 
@@ -140,7 +140,8 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
             ArrayList<PersonItemhash> var = new ArrayList<PersonItemhash>();
             var.add(item1);
             Calculation.put(person, var);
-        }}
+        }
+
 
 
         Toast.makeText(getApplicationContext(), "Selected: " + quantity, Toast.LENGTH_SHORT).show();
@@ -148,7 +149,7 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
         Toast.makeText(getApplicationContext(), "Selected: " + itemname, Toast.LENGTH_LONG).show();
         PersonItem item = new PersonItem(quantity, person, itemname);
         personlist1.add(item);
-        CustomAdapterperson.notifyDataSetChanged();
+        CustomAdapterperson.notifyDataSetChanged();}
 
 
     }
