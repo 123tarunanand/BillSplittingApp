@@ -16,7 +16,7 @@ public class Thirdact extends AppCompatActivity {
     ListView listView;
     ArrayList<Item> ItemModelList;
     HashMap<String,Double> FinalDisplay;
-    CustomAdapter customAdapter;
+    CustomAdapterwithoutdelete customAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +29,7 @@ public class Thirdact extends AppCompatActivity {
         listView = (ListView)findViewById(R.id.litsy);
         FinalDisplay=(HashMap<String,Double>)args.getSerializable("FinalDisplay");
         ItemModelList = new ArrayList<Item>();
-        customAdapter = new CustomAdapter(this, ItemModelList);
+        customAdapter = new CustomAdapterwithoutdelete(this, ItemModelList);
         listView.setAdapter(customAdapter);
         Set<String> keys = FinalDisplay.keySet();
         for(String key : keys)
