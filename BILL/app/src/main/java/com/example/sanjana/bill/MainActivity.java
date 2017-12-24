@@ -2,16 +2,45 @@ package com.example.sanjana.bill;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.preference.PreferenceManager;
+import android.provider.MediaStore;
+import android.provider.SyncStateContract;
+import android.support.annotation.NonNull;
+import android.support.v4.content.FileProvider;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
+import java.net.URI;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.UUID;
+
 
 
 public class MainActivity extends Activity {
@@ -23,10 +52,22 @@ public class MainActivity extends Activity {
     CustomAdapter customAdapter;
     HashMap<String,Double> items;
     Button sub;
+    private Button mButton;
+    private ImageView mImageView;
+    private static final int CAMERA_REQUEST_CODE=1;
+    private StorageReference mStorage;
+    private ProgressBar mProgress;
+    FirebaseStorage storage;
+    StorageReference storageRef;
+    StorageReference  storageReference;
+    Uri uri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mStorage= FirebaseStorage.getInstance().getReference();
+
         listView = (ListView) findViewById(R.id.listview);
         editTextView = (EditText) findViewById(R.id.editTextView);
         editTextView1 = (EditText) findViewById(R.id.editTextView1);
@@ -35,29 +76,81 @@ public class MainActivity extends Activity {
         customAdapter = new CustomAdapter(this, ItemModelList);
         listView.setEmptyView(findViewById(R.id.empty));
         listView.setAdapter(customAdapter);
+
+        mButton=(Button) findViewById(R.id.upload);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, CAMERA_REQUEST_CODE);
+
+            }
+        });
+        //storage = FirebaseStorage.getInstance();
+        //storageReference = storage.getReference();
+
     }
 
-    public void addValue(View v) {
-        try {
-            String name = editTextView.getText().toString();
-            double i = Double.parseDouble(editTextView1.getText().toString());
-            Item item = new Item(name, i);
-            items.put(name,i);
-            ItemModelList.add(item);
-            customAdapter.notifyDataSetChanged();
-            editTextView.setText("");
-            editTextView1.setText("");
-        }
-        catch (NumberFormatException e)
-        {
-            editTextView.setText("");
-            editTextView1.setText("");
-            AlertDialog a = new AlertDialog.Builder(this).create();
-            a.setTitle("Error");
-            a.setMessage("Incorrect entry");
-            a.show();
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK) {
+            mImageView = (ImageView) findViewById(R.id.receipt);
+            uri=data.getData();
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            mImageView.setImageBitmap(imageBitmap);
+            encodeBitmapAndSaveToFirebase(imageBitmap);
+/*
+            uri = data.getData();
+            StorageReference filepath=mStorage.child("Photos").child(uri.getLastPathSegment());
+            filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Toast.makeText(MainActivity.this,"Uploading",Toast.LENGTH_LONG);
+                }
+            });
+            }
+            */
         }
     }
+
+    public void encodeBitmapAndSaveToFirebase(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        //String imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+        byte[] data = baos.toByteArray();
+        StorageReference filepath=mStorage.child("Photos/"+data);
+        UploadTask uploadTask = filepath.putBytes(data);
+
+    }
+  /* private void encodeBitmapAndSaveToFirebase(Bitmap bitmap) {
+       storageRef = storage.getReference();
+       StorageReference mountainsRef = storageRef.child("reciept.jpg");
+       StorageReference mountainImagesRef = storageRef.child("images/reciept.jpg");
+
+
+       ByteArrayOutputStream baos = new ByteArrayOutputStream();
+       bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+       //String imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+       byte[] data = baos.toByteArray();
+
+       UploadTask uploadTask = mountainsRef.putBytes(data);
+       uploadTask.addOnFailureListener(new OnFailureListener() {
+           @Override
+           public void onFailure(@NonNull Exception exception) {
+               // Handle unsuccessful uploads
+           }
+       }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+           @Override
+           public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+               // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+              // Uri downloadUrl = taskSnapshot.getDownloadUrl();
+           }
+       });
+   } */
+
     public void submit(View v){
 
         Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
