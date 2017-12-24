@@ -155,8 +155,7 @@ public class MainActivity extends Activity {
   }
     public void submit(View v){
 
-        Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
-        Bundle args = new Bundle();
+
         ev = (EditText) findViewById(R.id.editText);
         if(ev.getText().toString().isEmpty())
         {
@@ -174,7 +173,8 @@ public class MainActivity extends Activity {
         }
         else
         {
-
+            Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
+            Bundle args = new Bundle();
             args.putSerializable("ARRAYLIST",(Serializable)ItemModelList);
             args.putSerializable("HashList",(Serializable)items);
             args.putString("NAME",ev.getText().toString());

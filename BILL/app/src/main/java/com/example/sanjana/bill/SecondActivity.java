@@ -40,6 +40,7 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
     String person;
     ListView listview;
     CustomAdapterPerson CustomAdapterperson;
+
     HashMap<String,Double> Items;
     final String nums[] = {"0", "0.34", "0.25", "0.5", "1", "2", "3"};
 
@@ -51,7 +52,7 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
         Intent intent = getIntent();
         Bundle args = intent.getBundleExtra("FOODLIST");
         ArrayList<Item> Foodlist = (ArrayList<Item>) args.getSerializable("ARRAYLIST");
-        HashMap<String,Double> Items=(HashMap<String,Double>)args.getSerializable("HashList");
+        Items=(HashMap<String,Double>)args.getSerializable("HashList");
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
         addItemsOnSpinner(Foodlist);
@@ -164,14 +165,16 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
         }
         else
         {
-        Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
+        Intent intent = new Intent(getApplicationContext(), Thirdact.class);
         Bundle args = new Bundle();
         Set<String> keys = Calculation.keySet();
         HashMap<String,Double>FinalDisplay=new HashMap<>();
         for (String key : keys) {
             ArrayList<PersonItemhash> list = Calculation.get(key);
             Double FinalPrice=0.0;
-            for (int i = 0; i < list.size(); i++) {
+            for (int i = 0; i < list.size(); i++)
+            {
+
                 PersonItemhash item=list.get(i);
                 Double cost=Items.get(item.getFooditem());
                 FinalPrice+=cost*item.getQuantity();
