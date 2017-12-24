@@ -21,12 +21,13 @@
         tools:layout_editor_absoluteY="-1dp" />
 
     <ListView
-        android:id ="@+id/litsy"
+        android:id="@+id/litsy"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/textView3"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView3"
+        android:clickable="false" />
 
 
 </RelativeLayout>
