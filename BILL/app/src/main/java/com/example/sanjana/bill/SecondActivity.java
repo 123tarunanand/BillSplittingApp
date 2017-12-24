@@ -41,7 +41,7 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
     String title;
     ListView listview;
     CustomAdapterPerson CustomAdapterperson;
-
+    int n,p;
     HashMap<String,Double> Items;
     final String nums[] = {"0", "0.34", "0.25", "0.5", "1", "2", "3"};
 
@@ -66,22 +66,37 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
         np.setValue(0);
         np.setWrapSelectorWheel(true);
         np.setDisplayedValues(nums);
+
+
         np.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 //Display the newly selected value from picker
+                n=oldVal;
+                p=newVal;
                 quantity = Double.valueOf(nums[newVal]);
 
             }
         });
+
         personlist1 = new ArrayList<PersonItem>();
         listview = findViewById(R.id.listquant);
         CustomAdapterperson = new CustomAdapterPerson(this, personlist1);
         listview.setEmptyView(findViewById(R.id.empty));
         listview.setAdapter(CustomAdapterperson);
         name = (EditText) findViewById(R.id.personname);
-
+        try
+        {
+            if(quantity.isNaN())
+            {
+                quantity = 0.0;
+            }
+        }
+        catch( NullPointerException e)
+        {
+            quantity=  Double.valueOf(0);
+        }
     }
 
     @Override
