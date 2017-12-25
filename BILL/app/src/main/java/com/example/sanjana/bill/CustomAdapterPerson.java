@@ -49,11 +49,11 @@ public class CustomAdapterPerson extends BaseAdapter{
             person.setText(m.getPName());
             item.setText(m.getFooditem());
 
-           try{ quantity.setText(String.valueOf(m.getQuantity()));}
-           catch(NullPointerException e)
-           {
-               quantity.setText(String.valueOf(0.0));
-           }
+            try{ quantity.setText(String.valueOf(m.getQuantity()));}
+            catch(NullPointerException e)
+            {
+                quantity.setText(String.valueOf(0.0));
+            }
 
             imgRemove.setOnClickListener(new View.OnClickListener() {
                 @Override

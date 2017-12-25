@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sanjana.bill.Item;
-import com.example.sanjana.bill.R;
+
 
 import java.util.ArrayList;
 

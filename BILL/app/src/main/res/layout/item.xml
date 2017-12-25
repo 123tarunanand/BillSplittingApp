@@ -11,14 +11,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="8dp"
-            android:textSize="19sp" />
+            android:textSize="18sp" />
     <TextView
         android:id="@+id/Price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:padding="8dp"
-        android:textSize="19sp" />
+        android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/imgRemove"

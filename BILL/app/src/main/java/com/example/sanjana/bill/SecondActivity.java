@@ -132,42 +132,42 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
         else
         {
 
-        if (Calculation.containsKey(person)) {
-            ArrayList<PersonItemhash> list = Calculation.get(person);
+            if (Calculation.containsKey(person)) {
+                ArrayList<PersonItemhash> list = Calculation.get(person);
 
-            for(int i = 0; i < list.size() ;i++) {
-                PersonItemhash k = list.get(i);
+                for(int i = 0; i < list.size() ;i++) {
+                    PersonItemhash k = list.get(i);
 
-               if (k.getFooditem().equals(itemname)) {
-                    AlertDialog a = new AlertDialog.Builder(this).create();
-                    a.setTitle("Error");
-                    a.setMessage("Item has already been entered");
-                    a.show();
-                   return;
+                    if (k.getFooditem().equals(itemname)) {
+                        AlertDialog a = new AlertDialog.Builder(this).create();
+                        a.setTitle("Error");
+                        a.setMessage("Item has already been entered");
+                        a.show();
+                        return;
+                    }
                 }
+                PersonItemhash item1 = new PersonItemhash(quantity, itemname);
+                list.add(item1);
+                Calculation.put(person, list);
+
+
+            } else {
+
+
+                PersonItemhash item1 = new PersonItemhash(quantity, itemname);
+                ArrayList<PersonItemhash> var = new ArrayList<PersonItemhash>();
+                var.add(item1);
+                Calculation.put(person, var);
             }
-            PersonItemhash item1 = new PersonItemhash(quantity, itemname);
-            list.add(item1);
-            Calculation.put(person, list);
-
-
-        } else {
-
-
-            PersonItemhash item1 = new PersonItemhash(quantity, itemname);
-            ArrayList<PersonItemhash> var = new ArrayList<PersonItemhash>();
-            var.add(item1);
-            Calculation.put(person, var);
-        }
 
 
 
-        Toast.makeText(getApplicationContext(), "Selected: " + quantity, Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(), "Name: " + person, Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(), "Selected: " + itemname, Toast.LENGTH_LONG).show();
-        PersonItem item = new PersonItem(quantity, person, itemname);
-        personlist1.add(item);
-        CustomAdapterperson.notifyDataSetChanged();}
+            Toast.makeText(getApplicationContext(), "Selected: " + quantity, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Name: " + person, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Selected: " + itemname, Toast.LENGTH_LONG).show();
+            PersonItem item = new PersonItem(quantity, person, itemname);
+            personlist1.add(item);
+            CustomAdapterperson.notifyDataSetChanged();}
 
 
     }
@@ -182,26 +182,26 @@ public class SecondActivity extends Activity implements OnItemSelectedListener {
         }
         else
         {
-        Intent intent = new Intent(getApplicationContext(), Thirdact.class);
-        Bundle args = new Bundle();
-        Set<String> keys = Calculation.keySet();
-        HashMap<String,Double>FinalDisplay=new HashMap<>();
-        for (String key : keys) {
-            ArrayList<PersonItemhash> list = Calculation.get(key);
-            Double FinalPrice=0.0;
-            for (int i = 0; i < list.size(); i++)
-            {
+            Intent intent = new Intent(getApplicationContext(), Thirdact.class);
+            Bundle args = new Bundle();
+            Set<String> keys = Calculation.keySet();
+            HashMap<String,Double>FinalDisplay=new HashMap<>();
+            for (String key : keys) {
+                ArrayList<PersonItemhash> list = Calculation.get(key);
+                Double FinalPrice=0.0;
+                for (int i = 0; i < list.size(); i++)
+                {
 
-                PersonItemhash item=list.get(i);
-                Double cost=Items.get(item.getFooditem());
-                FinalPrice+=cost*item.getQuantity();
+                    PersonItemhash item=list.get(i);
+                    Double cost=Items.get(item.getFooditem());
+                    FinalPrice+=cost*item.getQuantity();
 
+                }
+                FinalDisplay.put(key,FinalPrice);
             }
-            FinalDisplay.put(key,FinalPrice);
-        }
-        args.putSerializable("FinalDisplay",(Serializable)FinalDisplay);
-        args.putString("NAME",title);
-        intent.putExtra("List",args);
-        startActivity(intent);}
+            args.putSerializable("FinalDisplay",(Serializable)FinalDisplay);
+            args.putString("NAME",title);
+            intent.putExtra("List",args);
+            startActivity(intent);}
     }
 }
