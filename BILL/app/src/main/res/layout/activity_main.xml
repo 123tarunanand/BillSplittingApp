@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="addValue"
-        android:background="@drawable/tick"
+        android:background="@drawable/yes"
         android:layout_marginRight="25dp"
         android:layout_marginEnd="25dp"
         android:layout_alignBottom="@+id/editTextView1"
