@@ -96,11 +96,11 @@ public class MainActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK) {
-            mImageView = (ImageView) findViewById(R.id.receipt);
+            //mImageView = (ImageView) findViewById(R.id.receipt);
             uri=data.getData();
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            mImageView.setImageBitmap(imageBitmap);
+            //mImageView.setImageBitmap(imageBitmap);
             encodeBitmapAndSaveToFirebase(imageBitmap);
 /*
             uri = data.getData();
